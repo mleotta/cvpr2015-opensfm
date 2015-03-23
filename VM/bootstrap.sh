@@ -4,7 +4,19 @@
 sudo apt-get update
 #sudo apt-get install -y --no-install-recommends ubuntu-desktop
 sudo apt-get install -y lubuntu-desktop
+
+# Install video and image tools
 sudo apt-get install -y vlc
+
+# Build tools
+sudo apt-get install -y build-essential git cmake-qt-gui cmake-curses-gui
+
+# Boost dependencies
+sudo apt-get install -y libboost-timer1.55-dev libboost-program-options1.55-dev \
+                        libboost-timer1.55-dev libboost-filesystem1.55-dev
+
+sudo apt-get install -y libproj-dev
+
 
 # Setup the user, home directory, and data
 VM_USER=kitware
