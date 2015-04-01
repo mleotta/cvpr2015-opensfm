@@ -6,7 +6,10 @@ sudo apt-get update
 sudo apt-get install -y lubuntu-desktop
 
 # Install video and image tools
-sudo apt-get install -y vlc meshlab
+sudo apt-get install -y vlc
+
+# Install 3D viewer tools
+sudo apt-get install -y meshlab paraview
 
 # Build tools
 sudo apt-get install -y build-essential git cmake-qt-gui cmake-curses-gui
