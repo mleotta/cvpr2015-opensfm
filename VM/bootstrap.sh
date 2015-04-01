@@ -52,5 +52,8 @@ cat > /etc/sudoers.d/$VM_USER << DELIM
 $VM_USER ALL=(ALL) NOPASSWD:ALL
 DELIM
 
+# Disable the lock screen from auto starting
+sudo mv /etc/xdg/autostart/light-locker.desktop /etc/xdg/autostart/light-locker.desktop.bak
+
 # Reboot for graphical login
 reboot
