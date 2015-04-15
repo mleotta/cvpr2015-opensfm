@@ -20,6 +20,21 @@ sudo apt-get install -y libboost-timer1.55-dev libboost-program-options1.55-dev 
 
 sudo apt-get install -y libproj-dev
 
+# google-glog + gflags
+sudo apt-get install -y libgoogle-glog-dev
+
+# BLAS & LAPACK
+sudo apt-get install -y libatlas-base-dev
+
+# Eigen3
+sudo apt-get install -y libeigen3-dev
+
+# SuiteSparse and CXSparse (optional)
+# - If you want to build Ceres as a *static* library (the default)
+#   you can use the SuiteSparse package in the main Ubuntu package
+#   repository:
+sudo apt-get install -y libsuitesparse-dev
+
 
 # Setup the user, home directory, and data
 VM_USER=kitware
