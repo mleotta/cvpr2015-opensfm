@@ -8,6 +8,17 @@ SOFTWARE_DIR=$WORK_DIR/Software
 mkdir -p $SOFTWARE_DIR
 
 
+# Download and build OpenCV
+cd $SOFTWARE_DIR
+mkdir -p opencv/bld
+cd opencv
+wget https://github.com/Itseez/opencv/archive/3.0.0-beta.zip -O opencv-3.0.0-beta.zip
+unzip opencv-3.0.0-alpha.zip
+cd bld
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D WITH_TBB=ON -D WITH_IPP=OFF -D WITH_QT=ON -D WITH_OPENGL=ON ../opencv-3.0.0-beta
+make -j2
+
 # Checkout and build MAP-Tk
 cd $SOFTWARE_DIR
 git clone -b v0.5.0 https://github.com/Kitware/maptk.git maptk/src

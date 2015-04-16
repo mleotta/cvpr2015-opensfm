@@ -35,6 +35,17 @@ sudo apt-get install -y libeigen3-dev
 #   repository:
 sudo apt-get install -y libsuitesparse-dev
 
+# Qt4
+sudo apt-get install -y libqt4-dev
+
+# ffmpeg/libav
+sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev
+
+# Image I/O libraries
+sudo apt-get install -y libjpeg-dev libpng12-dev libtiff4-dev
+
+# Python support
+sudo apt-get install -y python3-dev python3-numpy python-dev python-numpy
 
 # Setup the user, home directory, and data
 VM_USER=kitware
