@@ -18,6 +18,7 @@ cd bld
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local \
       -D WITH_TBB=ON -D WITH_IPP=OFF -D WITH_QT=ON -D WITH_OPENGL=ON ../opencv-3.0.0-beta
 make -j2
+sudo make install
 
 # Checkout and build MAP-Tk
 cd $SOFTWARE_DIR
@@ -26,6 +27,7 @@ mkdir maptk/bld
 cd maptk/bld
 cmake $SOFTWARE_DIR/maptk/src -DMAPTK_ENABLE_PROJ:BOOL=ON
 make -j2
+sudo make install
 
 # Download and build Ceres Solver
 cd $SOFTWARE_DIR
@@ -37,3 +39,4 @@ cd bld
 cmake ../ceres-solver-1.10.0
 make -j2
 make test
+sudo make install
