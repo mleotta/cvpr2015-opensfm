@@ -13,7 +13,7 @@ cd $SOFTWARE_DIR
 mkdir -p opencv/bld
 cd opencv
 wget https://github.com/Itseez/opencv/archive/3.0.0-beta.zip -O opencv-3.0.0-beta.zip
-unzip opencv-3.0.0-alpha.zip
+unzip opencv-3.0.0-beta.zip
 cd bld
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local \
       -D WITH_TBB=ON -D WITH_IPP=OFF -D WITH_QT=ON -D WITH_OPENGL=ON ../opencv-3.0.0-beta
