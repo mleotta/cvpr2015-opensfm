@@ -1,3 +1,31 @@
+// Copyright 2015 Google Inc. All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution.
+// * Neither the name of Google Inc. nor the names of its contributors may be
+//   used to endorse or promote products derived from this software without
+//   specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
+//
+// Author: sameeragarwal@google.com (Sameer Agarwal)
+
 // Fitting a curve using Ceres Solver.
 //
 // This example shows how to fit the curve
@@ -9,62 +37,37 @@
 //  minimized.
 //
 // Usage:  curve_fitting <data_file>
+//
+//
+// Exercise 1
+//
+// Use automatic differentiation instead of numeric differentiation.
+// This will involve changing the implementation of
+// ExponentialResidual::operator() to use a template parameter T
+// instead of doubles.
+//
+// Reference: http://ceres-solver.org/nnls_tutorial.html#derivatives
+//
+// Exercise 2: Use a robust loss function.
+//
+// The data Data/curve_fitting/curve_fitting_data2.txt has outliers in
+// it, you can verify that by running the current program with this
+// data and observing how the estimated parameters are far away from
+// the true parameters. Changing the loss function associated with
+// each residual block will reduce the sensitivity to outliers.
+//
+// Reference: http://ceres-solver.org/nnls_tutorial.html#robust-curve-fitting
 
-#include <fstream>
 #include <iostream>
 #include <string>
 #include "ceres/ceres.h"
 #include "eigen3/Eigen/Core"
 #include "glog/logging.h"
+#include "gflags/gflags.h"
+#include "read_matrix.h"
 
-// Simple, not so robust function to read in the curve fitting data.
-//
-// Comment lines start with #. The first non-comment line contains the
-// number of rows and columns.  The remaining file is a matrix in
-// column major form.
-bool ReadMatrix(const std::string& filename, Eigen::MatrixXd* matrix) {
-  int num_rows = 0;
-  int num_cols = 0;
-  int row = -1;
-
-  std::ifstream file(filename);
-  std::string line;
-  std::getline(file, line);
-  while(!file.eof()) {
-    std::getline(file, line);
-    if (row >= num_rows) {
-      break;
-    }
-
-    if (line.substr(0, 1) == "#") {
-      continue;
-    }
-
-    std::istringstream iss(line);
-    if (num_rows < 1) {
-      if (!(iss >> num_rows >> num_cols)) {
-        return false;
-      }
-      matrix->resize(num_rows, num_cols);
-      row = 0;
-      continue;
-    }
-
-    for (int col = 0; col < num_cols; ++col) {
-      double entry;
-      if (!(iss >> entry)) {
-        return false;
-      }
-      (*matrix)(row, col) = entry;
-    }
-
-    ++row;
-  }
-  return true;
-}
-
-// Templated cost functor that implements the evaluation of the cost
-// and the Jacobian for a single observation.
+// Cost functor that implements the evaluation of the cost and the
+// Jacobian for a single observation.
 //
 // It stores the observed x and y as data, and given values for m and
 // c, evaluates
@@ -72,7 +75,7 @@ bool ReadMatrix(const std::string& filename, Eigen::MatrixXd* matrix) {
 //  residual = y - exp(m * x + c);
 //
 // This class is not used directly, before being passed to
-// ceres::Problem, it is wrapped in a ceres::AutoDiffCostFunction
+// ceres::Problem, it is wrapped in a ceres::NumericDiffCostFunction
 // object which automatically differentiates the
 // ExponentialResidual::operator() method.
 class ExponentialResidual {
@@ -80,20 +83,18 @@ class ExponentialResidual {
   ExponentialResidual(double x, double y)
       : x_(x), y_(y) {}
 
-  // Templated functor evaluating the residual.
-  //
-  // Notice that x_ and y_ are doubles which are explicitly converted
-  // to type T before being used.
-  template <typename T>
-  bool operator()(const T* const m, const T* const c, T* residual) const {
-    residual[0] = T(y_) - exp(m[0] * T(x_) + c[0]);
+  bool operator()(const double* const m,
+                  const double* const c,
+                  double* residual) const {
+    residual[0] = y_ - exp(m[0] * x_ + c[0]);
     return true;
   }
 
   // Factory methods which simplifies and hides the creation of the
   // CostFunction object.
   static ceres::CostFunction* Create(double x, double y) {
-    return new ceres::AutoDiffCostFunction<ExponentialResidual, 1, 1, 1>(
+    return new ceres::NumericDiffCostFunction<ExponentialResidual,
+                                              ceres::CENTRAL, 1, 1, 1>(
         new ExponentialResidual(x, y));
   }
 
@@ -125,13 +126,12 @@ int main(int argc, char** argv) {
   ceres::Problem problem;
   for (int i = 0; i < data.rows(); ++i) {
     problem.AddResidualBlock(
-        ExponentialResidual::Create(data(i, 0),data(i, 1)),
-        NULL,
+        ExponentialResidual::Create(data(i, 0), data(i, 1)),
+        NULL, /* Loss Function */
         &m, &c);
   }
 
   ceres::Solver::Options options;
-  options.max_num_iterations = 25;
   options.linear_solver_type = ceres::DENSE_QR;
   options.minimizer_progress_to_stdout = true;
 
