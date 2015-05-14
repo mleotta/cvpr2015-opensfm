@@ -41,7 +41,7 @@ make -j2
 make test
 sudo make install
 
-# Download and build Ceres Solver
+# Download and build GTSAM
 cd $SOFTWARE_DIR
 mkdir -p gtsam/bld
 cd gtsam
