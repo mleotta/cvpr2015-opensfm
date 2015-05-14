@@ -33,7 +33,8 @@ cd $SOFTWARE_DIR
 git clone -b v0.5.0 https://github.com/Kitware/maptk.git maptk/src
 mkdir maptk/bld
 cd maptk/bld
-cmake $SOFTWARE_DIR/maptk/src -DMAPTK_ENABLE_PROJ:BOOL=ON
+cmake $SOFTWARE_DIR/maptk/src -DMAPTK_ENABLE_PROJ:BOOL=ON \
+                              -DMAPTK_ENABLE_OPENCV:BOOL=ON
 make -j2
 sudo make install
 
