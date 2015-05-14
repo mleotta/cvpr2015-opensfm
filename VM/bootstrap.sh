@@ -14,9 +14,13 @@ sudo apt-get install -y meshlab paraview
 # Build tools
 sudo apt-get install -y build-essential git cmake-qt-gui cmake-curses-gui
 
-# Boost dependencies
-sudo apt-get install -y libboost-timer1.55-dev libboost-program-options1.55-dev \
-                        libboost-timer1.55-dev libboost-filesystem1.55-dev
+# Boost dependencies (for MAP-Tk)
+sudo apt-get install -y libboost-timer-dev libboost-program-options-dev \
+                        libboost-filesystem-dev
+
+# More Boost dependencies (for GTSAM)
+sudo apt-get install -y libboost-chrono-dev libboost-date-time-dev \
+                        libboost-regex-dev libboost-thread-dev
 
 sudo apt-get install -y libproj-dev
 
