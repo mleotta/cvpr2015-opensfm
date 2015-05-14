@@ -16,7 +16,7 @@ sudo apt-get install -y build-essential git cmake-qt-gui cmake-curses-gui
 
 # Boost dependencies (for MAP-Tk)
 sudo apt-get install -y libboost-timer-dev libboost-program-options-dev \
-                        libboost-timer-dev libboost-filesystem-dev
+                        libboost-filesystem-dev
 
 # More Boost dependencies (for GTSAM)
 sudo apt-get install -y libboost-chrono-dev libboost-date-time-dev \
