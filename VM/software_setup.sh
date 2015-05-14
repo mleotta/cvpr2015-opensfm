@@ -40,3 +40,15 @@ cmake ../ceres-solver-1.10.0
 make -j2
 make test
 sudo make install
+
+# Download and build Ceres Solver
+cd $SOFTWARE_DIR
+mkdir -p gtsam/bld
+cd gtsam
+wget https://research.cc.gatech.edu/borg/sites/edu.borg/files/downloads/gtsam-3.2.1.tgz
+tar zxf gtsam-3.2.1.tgz
+cd bld
+cmake ../gtsam-3.2.1
+make -j2
+make check
+sudo make install
