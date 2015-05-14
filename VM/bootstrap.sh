@@ -51,6 +51,13 @@ sudo apt-get install -y libjpeg-dev libpng12-dev libtiff4-dev
 # Python support
 sudo apt-get install -y python3-dev python3-numpy python-dev python-numpy
 
+# Install VXL (used by MAP-Tk)
+sudo apt-get install -y libvxl1-dev
+# The Ubuntu VXL package has a bug in which it links to libgeotiff at
+# the wrong location, so add a sym-link to work around.
+sudo ln -s /usr/lib/libgeotiff.so.2 /usr/lib/libgeotiff.so
+
+
 # Setup the user, home directory, and data
 VM_USER=kitware
 VM_PASS='$6$.7fXqR9L$WdmJCVuIOSt8JTgmyQPe1Mt8DObFPRmUXoyC9.qzw/US0hL5Uww1aHuDeKotAblyE1yEvM1Wxg7EvgAaA5Hkt1'
