@@ -62,3 +62,13 @@ cmake ../gtsam-3.2.1
 make -j2
 make check
 sudo make install
+
+# Checkout and build OpenMVG
+cd $SOFTWARE_DIR
+git clone -b master --recursive https://github.com/openMVG/openMVG.git
+mkdir openMVG_Build
+cd openMVG_Build
+cmake -DCMAKE_BUILD_TYPE=RELEASE -DOpenMVG_BUILD_TESTS:BOOL=ON \
+      -DOpenMVG_BUILD_EXAMPLES:BOOL=ON . ../openMVG/src/
+make
+make test
