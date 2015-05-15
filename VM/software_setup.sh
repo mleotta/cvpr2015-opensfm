@@ -5,7 +5,7 @@
 #       that are not available through the stock Ubuntu packages
 sudo add-apt-repository --yes ppa:xqms/opencv-nonfree
 sudo apt-get update
-sudo apt-get install libopencv-dev libopencv-nonfree-dev
+sudo apt-get install -y libopencv-dev libopencv-nonfree-dev
 
 
 VM_USER=$1
