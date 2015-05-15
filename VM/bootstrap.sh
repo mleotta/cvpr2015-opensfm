@@ -14,9 +14,13 @@ sudo apt-get install -y meshlab paraview
 # Build tools
 sudo apt-get install -y build-essential git cmake-qt-gui cmake-curses-gui
 
-# Boost dependencies
-sudo apt-get install -y libboost-timer1.55-dev libboost-program-options1.55-dev \
-                        libboost-timer1.55-dev libboost-filesystem1.55-dev
+# Boost dependencies (for MAP-Tk)
+sudo apt-get install -y libboost-timer-dev libboost-program-options-dev \
+                        libboost-filesystem-dev
+
+# More Boost dependencies (for GTSAM)
+sudo apt-get install -y libboost-chrono-dev libboost-date-time-dev \
+                        libboost-regex-dev libboost-thread-dev
 
 sudo apt-get install -y libproj-dev
 
@@ -46,6 +50,13 @@ sudo apt-get install -y libjpeg-dev libpng12-dev libtiff4-dev
 
 # Python support
 sudo apt-get install -y python3-dev python3-numpy python-dev python-numpy
+
+# Install VXL (used by MAP-Tk)
+sudo apt-get install -y libvxl1-dev
+# The Ubuntu VXL package has a bug in which it links to libgeotiff at
+# the wrong location, so add a sym-link to work around.
+sudo ln -s /usr/lib/libgeotiff.so.2 /usr/lib/libgeotiff.so
+
 
 # Setup the user, home directory, and data
 VM_USER=kitware
