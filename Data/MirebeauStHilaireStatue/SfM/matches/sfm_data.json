@@ -1,0 +1,569 @@
+{
+    "sfm_data_version": "0.1",
+    "root_path": "/home/pierre/Documents/Dev/github/pmoulon/cvpr2015-opensfm/Data/MirebeauStHilaireStatue/images/",
+    "views": [
+        {
+            "key": 0,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483649,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0001.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 0,
+                        "id_intrinsic": 3,
+                        "id_pose": 0
+                    }
+                }
+            }
+        },
+        {
+            "key": 1,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483650,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0002.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 1,
+                        "id_intrinsic": 3,
+                        "id_pose": 1
+                    }
+                }
+            }
+        },
+        {
+            "key": 2,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483651,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0003.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 2,
+                        "id_intrinsic": 5,
+                        "id_pose": 2
+                    }
+                }
+            }
+        },
+        {
+            "key": 3,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483652,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0004.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 3,
+                        "id_intrinsic": 3,
+                        "id_pose": 3
+                    }
+                }
+            }
+        },
+        {
+            "key": 4,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483653,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0005.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 4,
+                        "id_intrinsic": 3,
+                        "id_pose": 4
+                    }
+                }
+            }
+        },
+        {
+            "key": 5,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483654,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0006.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 5,
+                        "id_intrinsic": 6,
+                        "id_pose": 5
+                    }
+                }
+            }
+        },
+        {
+            "key": 6,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483655,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0007.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 6,
+                        "id_intrinsic": 0,
+                        "id_pose": 6
+                    }
+                }
+            }
+        },
+        {
+            "key": 7,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483656,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0008.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 7,
+                        "id_intrinsic": 2,
+                        "id_pose": 7
+                    }
+                }
+            }
+        },
+        {
+            "key": 8,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483657,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0009.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 8,
+                        "id_intrinsic": 0,
+                        "id_pose": 8
+                    }
+                }
+            }
+        },
+        {
+            "key": 9,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483658,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0010.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 9,
+                        "id_intrinsic": 3,
+                        "id_pose": 9
+                    }
+                }
+            }
+        },
+        {
+            "key": 10,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483659,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0011.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 10,
+                        "id_intrinsic": 4,
+                        "id_pose": 10
+                    }
+                }
+            }
+        },
+        {
+            "key": 11,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483660,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0012.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 11,
+                        "id_intrinsic": 1,
+                        "id_pose": 11
+                    }
+                }
+            }
+        },
+        {
+            "key": 12,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483661,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0013.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 12,
+                        "id_intrinsic": 1,
+                        "id_pose": 12
+                    }
+                }
+            }
+        },
+        {
+            "key": 13,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483662,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0014.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 13,
+                        "id_intrinsic": 4,
+                        "id_pose": 13
+                    }
+                }
+            }
+        },
+        {
+            "key": 14,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483663,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0015.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 14,
+                        "id_intrinsic": 3,
+                        "id_pose": 14
+                    }
+                }
+            }
+        },
+        {
+            "key": 15,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483664,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0016.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 15,
+                        "id_intrinsic": 7,
+                        "id_pose": 15
+                    }
+                }
+            }
+        },
+        {
+            "key": 16,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483665,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0017.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 16,
+                        "id_intrinsic": 7,
+                        "id_pose": 16
+                    }
+                }
+            }
+        },
+        {
+            "key": 17,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483666,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0018.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 17,
+                        "id_intrinsic": 7,
+                        "id_pose": 17
+                    }
+                }
+            }
+        },
+        {
+            "key": 18,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483667,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0019.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 18,
+                        "id_intrinsic": 7,
+                        "id_pose": 18
+                    }
+                }
+            }
+        },
+        {
+            "key": 19,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483668,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0020.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 19,
+                        "id_intrinsic": 7,
+                        "id_pose": 19
+                    }
+                }
+            }
+        },
+        {
+            "key": 20,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483669,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0021.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 20,
+                        "id_intrinsic": 7,
+                        "id_pose": 20
+                    }
+                }
+            }
+        },
+        {
+            "key": 21,
+            "value": {
+                "ptr_wrapper": {
+                    "id": 2147483670,
+                    "data": {
+                        "local_path": "/",
+                        "filename": "DPP_0022.JPG",
+                        "width": 1872,
+                        "height": 2808,
+                        "id_view": 21,
+                        "id_intrinsic": 7,
+                        "id_pose": 21
+                    }
+                }
+            }
+        }
+    ],
+    "intrinsics": [
+        {
+            "key": 0,
+            "value": {
+                "polymorphic_id": 2147483649,
+                "polymorphic_name": "pinhole_radial_k3",
+                "ptr_wrapper": {
+                    "id": 2147483671,
+                    "data": {
+                        "width": 1872,
+                        "height": 2808,
+                        "focal_length": 5148,
+                        "principal_point": [
+                            936,
+                            1404
+                        ],
+                        "disto_k3": [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "key": 1,
+            "value": {
+                "polymorphic_id": 1,
+                "ptr_wrapper": {
+                    "id": 2147483672,
+                    "data": {
+                        "width": 1872,
+                        "height": 2808,
+                        "focal_length": 3510,
+                        "principal_point": [
+                            936,
+                            1404
+                        ],
+                        "disto_k3": [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "key": 2,
+            "value": {
+                "polymorphic_id": 1,
+                "ptr_wrapper": {
+                    "id": 2147483673,
+                    "data": {
+                        "width": 1872,
+                        "height": 2808,
+                        "focal_length": 5304,
+                        "principal_point": [
+                            936,
+                            1404
+                        ],
+                        "disto_k3": [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "key": 3,
+            "value": {
+                "polymorphic_id": 1,
+                "ptr_wrapper": {
+                    "id": 2147483674,
+                    "data": {
+                        "width": 1872,
+                        "height": 2808,
+                        "focal_length": 5460,
+                        "principal_point": [
+                            936,
+                            1404
+                        ],
+                        "disto_k3": [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "key": 4,
+            "value": {
+                "polymorphic_id": 1,
+                "ptr_wrapper": {
+                    "id": 2147483675,
+                    "data": {
+                        "width": 1872,
+                        "height": 2808,
+                        "focal_length": 3588,
+                        "principal_point": [
+                            936,
+                            1404
+                        ],
+                        "disto_k3": [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "key": 5,
+            "value": {
+                "polymorphic_id": 1,
+                "ptr_wrapper": {
+                    "id": 2147483676,
+                    "data": {
+                        "width": 1872,
+                        "height": 2808,
+                        "focal_length": 5070,
+                        "principal_point": [
+                            936,
+                            1404
+                        ],
+                        "disto_k3": [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "key": 6,
+            "value": {
+                "polymorphic_id": 1,
+                "ptr_wrapper": {
+                    "id": 2147483677,
+                    "data": {
+                        "width": 1872,
+                        "height": 2808,
+                        "focal_length": 5226,
+                        "principal_point": [
+                            936,
+                            1404
+                        ],
+                        "disto_k3": [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "key": 7,
+            "value": {
+                "polymorphic_id": 1,
+                "ptr_wrapper": {
+                    "id": 2147483678,
+                    "data": {
+                        "width": 1872,
+                        "height": 2808,
+                        "focal_length": 10530,
+                        "principal_point": [
+                            936,
+                            1404
+                        ],
+                        "disto_k3": [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "extrinsics": [],
+    "structure": []
+}
