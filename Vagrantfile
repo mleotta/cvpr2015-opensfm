@@ -10,11 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu/trusty32"
-  #config.vm.box = "hashicorp/precise32"
-  #config.vm.box = "hbokh/trusty64"
-  #config.vm.box = "trusty-server-cloudimg-i386-vagrant-disk1.box"
-  #config.vm.box = "chef/ubuntu-14.04-i386"
+  config.vm.box = "ubuntu/trusty64"
 
   config.vm.provision :shell, :path => "VM/bootstrap.sh"
 
