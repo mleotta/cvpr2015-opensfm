@@ -67,7 +67,7 @@ VM_PASS='$6$.7fXqR9L$WdmJCVuIOSt8JTgmyQPe1Mt8DObFPRmUXoyC9.qzw/US0hL5Uww1aHuDeKo
 
 # Change the hostname
 echo "updating the hostname"
-echo "kitware-trusty-32" > /etc/hostname
+echo "kitware-trusty-64" > /etc/hostname
 
 # Set the desktop wallpaper
 echo "copy the KW wallpaper"
