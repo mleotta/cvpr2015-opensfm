@@ -57,6 +57,9 @@ sudo apt-get install -y libvxl1-dev
 # the wrong location, so add a sym-link to work around.
 sudo ln -s /usr/lib/libgeotiff.so.2 /usr/lib/libgeotiff.so
 
+# install blender for visualization of MAP-Tk output
+sudo apt-get install -y blender
+
 
 # Setup the user, home directory, and data
 VM_USER=kitware
