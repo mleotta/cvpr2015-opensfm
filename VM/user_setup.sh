@@ -43,4 +43,4 @@ cp -r /vagrant/Examples $WORK_DIR/
 cp -r /vagrant/Data $WORK_DIR/
 
 # copy user configuration files
-cp -r /vagrant/VM/config /home/$VM_USER/.config
+cp -r /vagrant/VM/config/* /home/$VM_USER/.config
