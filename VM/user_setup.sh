@@ -4,7 +4,13 @@ VM_USER=$1
 
 mkdir -p /home/$VM_USER/Desktop
 mkdir -p /home/$VM_USER/SfM
+
+# Copy application shortcuts to the desktop
 cp /usr/share/applications/lxterminal.desktop /home/$VM_USER/Desktop/
+cp /usr/share/applications/meshlab.desktop /home/$VM_USER/Desktop/
+cp /usr/share/applications/blender.desktop /home/$VM_USER/Desktop/
+
+# Create a shortcut to course materials
 cat > /home/$VM_USER/Desktop/course-materials.desktop << DELIM
 [Desktop Entry]
 Encoding=UTF-8
