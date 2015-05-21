@@ -20,6 +20,12 @@ cp /vagrant/VM/Desktop_KW.jpg /usr/share/lubuntu/wallpapers/
 echo "creating user $VM_USER"
 useradd -m -s /bin/bash -p $VM_PASS $VM_USER
 
+# Setup sudo permission
+echo "add sudo permission"
+cat > /etc/sudoers.d/$VM_USER << DELIM
+$VM_USER ALL=(ALL) NOPASSWD:ALL
+DELIM
+
 echo "running /vagrant/VM/user_setup.sh"
 sudo -u $VM_USER /vagrant/VM/user_setup.sh $VM_USER
 
@@ -31,12 +37,6 @@ echo "setup auto login"
 cat > /etc/lightdm/lightdm.conf.d/30-autologin.conf << DELIM
 [SeatDefaults]
 autologin-user=$VM_USER
-DELIM
-
-# Setup sudo permission
-echo "add sudo permission"
-cat > /etc/sudoers.d/$VM_USER << DELIM
-$VM_USER ALL=(ALL) NOPASSWD:ALL
 DELIM
 
 # Disable the lock screen from auto starting
