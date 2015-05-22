@@ -60,4 +60,4 @@ sudo ln -s /usr/lib/libgeotiff.so.2 /usr/lib/libgeotiff.so
 sudo apt-get install -y blender
 
 #install text editors
-sudo apt-get install -y emacs
+sudo apt-get install -y emacs kate gedit
