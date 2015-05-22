@@ -42,5 +42,9 @@ DELIM
 # Disable the lock screen from auto starting
 sudo mv /etc/xdg/autostart/light-locker.desktop /etc/xdg/autostart/light-locker.desktop.bak
 
+# update /etc/ld.so.conf to have /usr/local/lib on library path
+# not sure why this needs to be done manually
+sudo ldconfig
+
 # Reboot for graphical login
 reboot
