@@ -1,0 +1,9 @@
+do the usual:
+
+.. code-block:: sh
+
+   mkdir build && cd build
+   cmake ../
+   make
+
+The ``calibration`` executable helps you calibrate a camera in real time or a set of images.
