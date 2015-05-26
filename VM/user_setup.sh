@@ -48,5 +48,16 @@ cp -r /vagrant/Exercises $WORK_DIR/
 cp -r /vagrant/Examples $WORK_DIR/
 cp -r /vagrant/Data $WORK_DIR/
 
+# make symlinks to CLIF images for MAP-Tk result viewing in Blender
+cd /home/$VM_USER/SfM/Exercises/maptk/results
+mkdir frames
+cd frames
+a=1
+while read f
+do
+    ln -s ../../$f $(printf "%03d.jpg" "$a")
+    let a=a+1
+done < ../../clif_frames.txt
+
 # copy user configuration files
 cp -r /vagrant/VM/config/* /home/$VM_USER/.config
