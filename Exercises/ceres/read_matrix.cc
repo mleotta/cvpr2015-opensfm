@@ -39,7 +39,7 @@ bool ReadMatrix(const std::string& filename, Eigen::MatrixXd* matrix) {
   int num_cols = 0;
   int row = -1;
 
-  std::ifstream file(filename);
+  std::ifstream file(filename.c_str());
   while (!file.eof()) {
     std::string line;
     std::getline(file, line);
