@@ -7,3 +7,15 @@ do the usual:
    make
 
 The ``calibration`` executable helps you calibrate a camera in real time or a set of images.
+
+The ``orb_detector`` executable finds ORB features in an image.
+
+.. code-block:: sh
+
+   ./orb_detector ../data/box_in_scene.png
+
+The ``orb_matcher`` executable finds an image in another one.
+
+.. code-block:: sh
+
+   ./orb_detector ../data/box.png ../data/box_in_scene.png
