@@ -1,6 +1,6 @@
 {
     "sfm_data_version": "0.1",
-    "root_path": "/home/pierre/Documents/Dev/github/pmoulon/cvpr2015-opensfm/Data/MirebeauStHilaireStatue/images/",
+    "root_path": "/home/kitware/SfM/Data/MirebeauStHilaireStatue/images/",
     "views": [
         {
             "key": 0,

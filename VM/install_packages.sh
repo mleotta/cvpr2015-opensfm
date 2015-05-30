@@ -50,6 +50,9 @@ sudo apt-get install -y libjpeg-dev libpng12-dev libtiff4-dev
 # Python support
 sudo apt-get install -y python3-dev python3-numpy python-dev python-numpy
 
+# graphviz (Graph Visualization Software)
+sudo apt-get install -y graphviz
+
 # Install VXL (used by MAP-Tk)
 sudo apt-get install -y libvxl1-dev
 # The Ubuntu VXL package has a bug in which it links to libgeotiff at
