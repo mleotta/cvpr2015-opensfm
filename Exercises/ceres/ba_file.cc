@@ -40,7 +40,7 @@
 namespace openMVG {
 
 BAFile::BAFile(const std::string& filename) {
-  std::ifstream file(filename);
+  std::ifstream file(filename.c_str());
   if (!file.good()) {
     LOG(FATAL) << "Unable to open file: " << filename;
   }
