@@ -20,7 +20,7 @@ void readme();
  */
 int main( int argc, char** argv )
 {
-  if( argc != 3 )
+  if( argc != 2 )
   { readme(); return -1; }
 
   Mat img = imread( argv[1], CV_LOAD_IMAGE_GRAYSCALE );
@@ -52,4 +52,4 @@ int main( int argc, char** argv )
  * @function readme
  */
 void readme()
-{ std::cout << " Usage: ./SURF_detector <img1>" << std::endl; }
+{ std::cout << " Usage: ./orb_detector <img1>" << std::endl; }
