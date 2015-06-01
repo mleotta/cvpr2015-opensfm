@@ -64,6 +64,15 @@
 		<project id="gtsam-cvpr.null.994187351" name="gtsam-cvpr"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.macosx.base.1027140468;cdt.managedbuild.toolchain.gnu.macosx.base.1027140468.1218616403;cdt.managedbuild.tool.gnu.c.compiler.macosx.base.1056995063;cdt.managedbuild.tool.gnu.c.compiler.input.1543400802">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.macosx.base.1027140468;cdt.managedbuild.toolchain.gnu.macosx.base.1027140468.1218616403;cdt.managedbuild.tool.gnu.cpp.compiler.macosx.base.1655763716;cdt.managedbuild.tool.gnu.cpp.compiler.input.639972831">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
 		<buildTargets>
 			<target name="CameraResectioning.run" path="build" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
@@ -83,14 +92,5 @@
 				<runAllBuilders>true</runAllBuilders>
 			</target>
 		</buildTargets>
-	</storageModule>
-	<storageModule moduleId="scannerConfiguration">
-		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.macosx.base.1027140468;cdt.managedbuild.toolchain.gnu.macosx.base.1027140468.1218616403;cdt.managedbuild.tool.gnu.c.compiler.macosx.base.1056995063;cdt.managedbuild.tool.gnu.c.compiler.input.1543400802">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.macosx.base.1027140468;cdt.managedbuild.toolchain.gnu.macosx.base.1027140468.1218616403;cdt.managedbuild.tool.gnu.cpp.compiler.macosx.base.1655763716;cdt.managedbuild.tool.gnu.cpp.compiler.input.639972831">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
 	</storageModule>
 </cproject>

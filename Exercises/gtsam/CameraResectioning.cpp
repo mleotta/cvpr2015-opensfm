@@ -33,23 +33,24 @@ class ResectioningFactor: public NoiseModelFactor1<Pose3> {
   typedef NoiseModelFactor1<Pose3> Base;
 
   Cal3_S2::shared_ptr K_; ///< camera's intrinsic parameters
-  Point3 P_; ///< 3D point on the calibration rig
-  Point2 p_; ///< 2D measurement of the 3D point
+  Point3 knownPoint_; ///< 3D point on the calibration rig
+  Point2 imageMeasurement_; ///< 2D measurement of the 3D point
 
 public:
 
   /// Construct factor given known point P and its projection p
   ResectioningFactor(const SharedNoiseModel& model, const Key& key,
       const Cal3_S2::shared_ptr& calib, const Point2& p, const Point3& P) :
-      Base(model, key), K_(calib), P_(P), p_(p) {
+      Base(model, key), K_(calib), knownPoint_(P), imageMeasurement_(p) {
   }
 
   /// evaluate the error
-  virtual Vector evaluateError(const Pose3& pose, boost::optional<Matrix&> H =
-      boost::none) const {
-    SimpleCamera camera(pose, *K_);
-    Point2 reprojectionError(camera.project(P_, H) - p_);
-    return reprojectionError.vector();
+  virtual Vector evaluateError(const Pose3& poseToBeEvaluated,
+      boost::optional<Matrix&> jacobianOfErrorVsPose = boost::none) const {
+    // TODO: return the error of this factor, i.e., the re-projection error
+    // when projecting the known point into the camera at the hypothesized pose
+    // Hint: create a SimpleCamera, and call project. Then compare with imageMeasurement_
+    return Vector2(0,0); // obviously wrong, please replace
   }
 };
 
@@ -72,23 +73,23 @@ int main(int argc, char* argv[]) {
   // add measurement factors
   SharedDiagonal measurementNoise = Diagonal::Sigmas((Vector(2) << 0.5, 0.5));
   boost::shared_ptr<ResectioningFactor> factor;
-  graph.push_back(
-      boost::make_shared < ResectioningFactor
-          > (measurementNoise, X(1), calib, Point2(55, 45), Point3(10, 10, 0)));
-  graph.push_back(
-      boost::make_shared < ResectioningFactor
-          > (measurementNoise, X(1), calib, Point2(45, 45), Point3(-10, 10, 0)));
-  graph.push_back(
-      boost::make_shared < ResectioningFactor
-          > (measurementNoise, X(1), calib, Point2(45, 55), Point3(-10, -10, 0)));
-  graph.push_back(
-      boost::make_shared < ResectioningFactor
-          > (measurementNoise, X(1), calib, Point2(55, 55), Point3(10, -10, 0)));
+  graph.add(
+      ResectioningFactor(measurementNoise, X(1), calib, Point2(55, 45),
+          Point3(10, 10, 0)));
+  graph.add(
+      ResectioningFactor(measurementNoise, X(1), calib, Point2(45, 45),
+          Point3(-10, 10, 0)));
+  graph.add(
+      ResectioningFactor(measurementNoise, X(1), calib, Point2(45, 55),
+          Point3(-10, -10, 0)));
+  graph.add(
+      ResectioningFactor(measurementNoise, X(1), calib, Point2(55, 55),
+          Point3(10, -10, 0)));
 
   /* 3. Create an initial estimate for the camera pose */
   Values initial;
   initial.insert(X(1),
-      Pose3(Rot3(1, 0, 0, 0, -1, 0, 0, 0, -1), Point3(0, 0, 2)));
+      Pose3(Rot3(1, 0, 0, 0, -1, 0, 0, 0, -1), Point3(0.1, 0.2, 2.1)));
 
   /* 4. Optimize the graph using Levenberg-Marquardt*/
   Values result = LevenbergMarquardtOptimizer(graph, initial).optimize();
