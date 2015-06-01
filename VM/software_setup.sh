@@ -30,10 +30,14 @@ mkdir -p $SOFTWARE_DIR
 
 # Checkout and build MAP-Tk
 cd $SOFTWARE_DIR
-git clone -b v0.5.0 https://github.com/Kitware/maptk.git maptk/src
+git clone -b cvpr2015-tutorial https://github.com/Kitware/maptk.git maptk/src
 mkdir maptk/bld
 cd maptk/bld
 cmake -D CMAKE_BUILD_TYPE=Release \
+      -D BUILD_SHARED_LIBS:BOOL=ON \
+      -D MAPTK_ENABLE_C_LIB:BOOL=ON \
+      -D MAPTK_USE_BUILD_PLUGIN_DIR:BOOL=OFF \
+      -D MAPTK_ENABLE_TESTING:BOOL=ON \
       -D MAPTK_ENABLE_PROJ:BOOL=ON \
       -D MAPTK_ENABLE_OPENCV:BOOL=ON \
       -D MAPTK_ENABLE_VXL:BOOL=ON \
