@@ -30,6 +30,9 @@
 
 #include "ba_file.h"
 
+#include <math.h>
+#include <stdlib.h>
+#include <algorithm>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -38,6 +41,44 @@
 #include "glog/logging.h"
 
 namespace openMVG {
+namespace {
+
+// Return a random number sampled from a uniform distribution in the range
+// [0,1].
+inline double RandDouble() {
+  double r = static_cast<double>(rand());
+  return r / RAND_MAX;
+}
+
+// Marsaglia Polar method for generation standard normal (pseudo)
+// random numbers http://en.wikipedia.org/wiki/Marsaglia_polar_method
+inline double RandNormal() {
+  double x1, x2, w;
+  do {
+    x1 = 2.0 * RandDouble() - 1.0;
+    x2 = 2.0 * RandDouble() - 1.0;
+    w = x1 * x1 + x2 * x2;
+  } while ( w >= 1.0 || w == 0.0 );
+
+  w = sqrt((-2.0 * log(w)) / w);
+  return x1 * w;
+}
+
+void PerturbPoint3(const double sigma, double* point) {
+  if (sigma <= 0) return;
+  for (int i = 0; i < 3; ++i) {
+    point[i] += RandNormal() * sigma;
+  }
+}
+
+double Median(std::vector<double>* data) {
+  int n = data->size();
+  std::vector<double>::iterator mid_point = data->begin() + n / 2;
+  std::nth_element(data->begin(), mid_point, data->end());
+  return *mid_point;
+}
+
+}  // namespace
 
 BAFile::BAFile(const std::string& filename) {
   std::ifstream file(filename.c_str());
@@ -103,6 +144,93 @@ BAFile::BAFile(const std::string& filename) {
 
       observations_[i].push_back(observation);
     }
+  }
+}
+
+void BAFile::WriteToPLYFile(const std::string& filename) const {
+  std::ofstream of(filename.c_str());
+
+  of << "ply"
+     << '\n' << "format ascii 1.0"
+     << '\n' << "element vertex " << num_poses() + num_points()
+     << '\n' << "property float x"
+     << '\n' << "property float y"
+     << '\n' << "property float z"
+     << '\n' << "property uchar red"
+     << '\n' << "property uchar green"
+     << '\n' << "property uchar blue"
+     << '\n' << "end_header" << std::endl;
+
+  // Export extrinsic data (i.e. camera centers) as green points.
+  double center[3];
+  for (int i = 0; i < num_poses(); ++i)  {
+    const double* center = GetPose(i) + 3;
+    of << center[0] << " " << center[1] << " " << center[2]
+       << " 0 255 0" << "\n";
+  }
+
+  // Export the structure (i.e. 3D Points) as white points.
+  for (int i = 0; i < num_points(); ++i) {
+    const double* point = GetPoint(i);
+    of << point[0] << " " << point[1] << " " << point[2]
+       << " 255 255 255\n";
+  }
+  of.close();
+}
+
+void BAFile::Normalize() {
+  // Compute the marginal median of the geometry.
+  std::vector<double> tmp(num_points_);
+  Eigen::Vector3d median;
+  for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < num_points(); ++j) {
+      tmp[j] = GetPoint(j)[i];
+    }
+    median(i) = Median(&tmp);
+  }
+
+  for (int i = 0; i < num_points(); ++i) {
+    Eigen::Map<Eigen::Vector3d> point(GetPoint(i));
+    tmp[i] = (point - median).lpNorm<1>();
+  }
+
+  const double median_absolute_deviation = Median(&tmp);
+
+  // Scale so that the median absolute deviation of the resulting
+  // reconstruction is 100.
+  const double scale = 100.0 / median_absolute_deviation;
+
+  VLOG(2) << "median: " << median.transpose();
+  VLOG(2) << "median absolute deviation: " << median_absolute_deviation;
+  VLOG(2) << "scale: " << scale;
+
+  // X = scale * (X - median)
+  for (int i = 0; i < num_points(); ++i) {
+    Eigen::Map<Eigen::Vector3d> point(GetPoint(i));
+    point = scale * (point - median);
+  }
+
+  // center = scale * (center - median)
+  for (int i = 0; i < num_poses(); ++i) {
+    Eigen::Map<Eigen::Vector3d> center(GetPose(i) + 3);
+    center = scale * (center - median);
+  }
+}
+
+void BAFile::Perturb(const double rotation_sigma,
+                     const double position_sigma,
+                     const double point_sigma) {
+  CHECK_GE(point_sigma, 0.0);
+  CHECK_GE(rotation_sigma, 0.0);
+  CHECK_GE(position_sigma, 0.0);
+
+  for (int i = 0; i < num_points(); ++i) {
+    PerturbPoint3(point_sigma, GetPoint(i));
+  }
+
+  for (int i = 0; i < num_poses(); ++i) {
+    PerturbPoint3(rotation_sigma, GetPose(i));
+    PerturbPoint3(position_sigma, GetPose(i) + 3);
   }
 }
 
