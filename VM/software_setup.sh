@@ -33,9 +33,11 @@ cd $SOFTWARE_DIR
 git clone -b v0.5.0 https://github.com/Kitware/maptk.git maptk/src
 mkdir maptk/bld
 cd maptk/bld
-cmake $SOFTWARE_DIR/maptk/src -DMAPTK_ENABLE_PROJ:BOOL=ON \
-                              -DMAPTK_ENABLE_OPENCV:BOOL=ON \
-                              -DMAPTK_ENABLE_VXL:BOOL=ON
+cmake -D CMAKE_BUILD_TYPE=Release \
+      -D MAPTK_ENABLE_PROJ:BOOL=ON \
+      -D MAPTK_ENABLE_OPENCV:BOOL=ON \
+      -D MAPTK_ENABLE_VXL:BOOL=ON \
+      $SOFTWARE_DIR/maptk/src
 make -j2
 sudo make install
 
@@ -46,7 +48,7 @@ cd ceres
 wget http://ceres-solver.org/ceres-solver-1.10.0.tar.gz
 tar zxf ceres-solver-1.10.0.tar.gz
 cd bld
-cmake ../ceres-solver-1.10.0
+cmake -D CMAKE_BUILD_TYPE=Release ../ceres-solver-1.10.0
 make -j2
 make test
 sudo make install
@@ -58,7 +60,7 @@ cd gtsam
 wget https://research.cc.gatech.edu/borg/sites/edu.borg/files/downloads/gtsam-3.2.1.tgz
 tar zxf gtsam-3.2.1.tgz
 cd bld
-cmake ../gtsam-3.2.1
+cmake -D CMAKE_BUILD_TYPE=Release ../gtsam-3.2.1
 make -j2
 make check
 sudo make install
@@ -68,7 +70,7 @@ cd $SOFTWARE_DIR
 git clone -b master --recursive https://github.com/openMVG/openMVG.git
 mkdir openMVG_Build
 cd openMVG_Build
-cmake -DCMAKE_BUILD_TYPE=RELEASE -DOpenMVG_BUILD_TESTS:BOOL=ON -DOpenMVG_BUILD_EXAMPLES:BOOL=ON \
+cmake -DCMAKE_BUILD_TYPE=Release -DOpenMVG_BUILD_TESTS:BOOL=ON -DOpenMVG_BUILD_EXAMPLES:BOOL=ON \
       -DCERES_EIGEN_VERSION="3.2.0" -DEIGEN_INCLUDE_DIR_HINTS:STRING="/usr/include/eigen3/" \
       . ../openMVG/src/
 make
