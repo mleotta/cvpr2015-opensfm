@@ -45,9 +45,7 @@ class BAFile {
  public:
   explicit BAFile(const std::string& filename);
 
-  // TODO(sameeragarwal): Implement these functions.
-  // void WriteToFile(const std::string& filename) const;
-  // void WriteToPLYFile(const std::string& filename) const;
+  void WriteToPLYFile(const std::string& filename) const;
 
   // Move the "center" of the reconstruction to the origin, where the
   // center is determined by computing the marginal median of the
@@ -56,14 +54,13 @@ class BAFile {
   // 100.0.
   //
   // The reprojection error of the problem remains the same.
-  // void Normalize();
+  void Normalize();
 
   // Perturb the camera pose and the geometry with random normal
   // numbers with corresponding standard deviations.
-
-  // void Perturb(const double rotation_sigma,
-  //              const double translation_sigma,
-  //              const double point_sigma);
+  void Perturb(const double rotation_sigma,
+               const double translation_sigma,
+               const double point_sigma);
 
   const std::vector<Observation>& ObservationsForPoint(int point_id) {
     return observations_[point_id];
@@ -72,6 +69,12 @@ class BAFile {
   double* GetPoint(int point_id) { return &points_[point_id * 3]; }
   double* GetPose(int pose_id)   { return &poses_[pose_id * 6]; }
   double* GetIntrinsics(int intrinsics_id) {
+    return &intrinsics_[intrinsics_id * 6];
+  }
+
+  const double* GetPoint(int point_id) const { return &points_[point_id * 3]; }
+  const double* GetPose(int pose_id)   const { return &poses_[pose_id * 6]; }
+  const double* GetIntrinsics(int intrinsics_id) const {
     return &intrinsics_[intrinsics_id * 6];
   }
 

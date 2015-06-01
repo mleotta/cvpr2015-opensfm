@@ -31,6 +31,37 @@
 // This example reads a BAF file produced by openMVG and minimizes the
 // sum squared reprojection error for the camera model defined by
 // openMVG.
+//
+// Usage:  bundle_adjuster --input <baf_file>
+//
+// Exercise 1
+//
+// Partially remove gauge ambiguity by setting the extrinsics of the
+// first camera constant.
+//
+// As implemented, the entire reconstruction is free to move in space
+// via a similarity transformation without any change in the
+// reprojection error. Fixing the extrinsics of the first camera
+// eliminates six out the seven degrees of freedom of the
+// reconstruction.
+//
+// Exercise 2
+//
+// Hold the principal point of each camera constant.
+//
+// As implemented, the set of intrinsics optimized by the bundle
+// adjustment are the focal length, principal point and the radial
+// distortion parameters. Use a SubsetParameterization to hold the
+// principal point for all the cameras constant.
+//
+// Exercise 3
+//
+// Experiment with different linear solvers.
+//
+// Change the linear solver being used by the Levenberg-Marquardt
+// algorithm to SPARSE_NORMAL_CHOLESKY and observe the difference in
+// performance between a generic linear solver and one which exploits
+// the sparsity structure of the bundle adjustment problem.
 
 #include <string>
 
@@ -39,6 +70,21 @@
 #include "gflags/gflags.h"
 #include "glog/logging.h"
 #include "reprojection_error.h"
+
+DEFINE_string(input, "", "BAF File containing an openMVG reconstruction.");
+DEFINE_double(rotation_sigma, 0.0, "Standard deviation of camera rotation "
+              "perturbation.");
+DEFINE_double(position_sigma, 0.0, "Standard deviation of the camera "
+              "position perturbation.");
+DEFINE_double(point_sigma, 0.0, "Standard deviation of the point "
+              "perturbation.");
+DEFINE_string(initial_ply, "", "Export the BAF file data as a PLY file after "
+              "perturbation.");
+DEFINE_string(final_ply, "", "Export the refined BAF file data as a PLY "
+              "file after optimization.");
+DEFINE_int32(random_seed, 38401, "Random seed used to set the state "
+             "of the pseudo random number generator used to generate "
+             "the pertubations.");
 
 using openMVG::BAFile;
 using openMVG::Observation;
@@ -49,23 +95,32 @@ int main(int argc, char** argv) {
   google::ParseCommandLineFlags(&argc, &argv, true);
   google::InitGoogleLogging(argv[0]);
 
-  if (argc < 2) {
-    std::cerr << "bundle_adjuster <baf_file>\n";
+ if (FLAGS_input.empty()) {
+   LOG(ERROR) << "Usage: bundle_adjuster --input=baf_file";
     return 1;
   }
 
   // Read in the OpenMVG BAF file.
-  BAFile baf(argv[1]);
+  BAFile ba_file(FLAGS_input);
+  srand(FLAGS_random_seed);
+  ba_file.Normalize();
+  ba_file.Perturb(FLAGS_rotation_sigma,
+                  FLAGS_position_sigma,
+                  FLAGS_point_sigma);
+
+  if (!FLAGS_initial_ply.empty()) {
+    ba_file.WriteToPLYFile(FLAGS_initial_ply);
+  }
 
   // Construct the ceres Problem, adding one residual block for each
   // observation.
   ceres::Problem problem;
-  for (int point_id = 0; point_id < baf.num_points(); ++point_id) {
+  for (int point_id = 0; point_id < ba_file.num_points(); ++point_id) {
     // BAF files store all observations for a 3d point/landmark
     // together.
     const std::vector<Observation>& observations =
-        baf.ObservationsForPoint(point_id);
-    double* point = baf.GetPoint(point_id);
+        ba_file.ObservationsForPoint(point_id);
+    double* point = ba_file.GetPoint(point_id);
     for (int i = 0; i < observations.size(); ++i) {
       const Observation& obs = observations[i];
       // Add a residual block per observation, with the intrinsics and
@@ -79,15 +134,15 @@ int main(int argc, char** argv) {
       // parameter blocks passed to it.
       problem.AddResidualBlock(ReprojectionError::Create(obs.x, obs.y),
                                NULL,
-                               baf.GetIntrinsics(obs.intrinsics_id),
-                               baf.GetPose(obs.pose_id),
+                               ba_file.GetIntrinsics(obs.intrinsics_id),
+                               ba_file.GetPose(obs.pose_id),
                                point);
     }
   }
 
   ceres::Solver::Options options;
 
-  // DENSE_SCHUR constructs the schur complement and solves the
+  // DENSE_SCHUR constructs the Schur complement and solves the
   // reduced linear system using a dense Cholesky factorization. For
   // small to medium sized problem this is a perfectly suitable
   // solver.
@@ -101,6 +156,10 @@ int main(int argc, char** argv) {
   ceres::Solver::Summary summary;
   ceres::Solve(options, &problem, &summary);
   std::cout << summary.FullReport() << "\n";
+
+  if (!FLAGS_final_ply.empty()) {
+    ba_file.WriteToPLYFile(FLAGS_final_ply);
+  }
 
   return 0;
 }

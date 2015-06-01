@@ -17,8 +17,8 @@ namespace openMVG {
  *Data parameter blocks are the following <2,6,6,3>
  *- 2 => residuals dimension,
  *- 6 => intrinsic data block [focal, principal point [x,y], disto [K1, K2, K3]],
- *- 6 => camera extrinsic data block (camera orientation and translation) [R;t],
- *       - rotation(angle axis), and translation [rX,rY,rZ,tx,ty,tz].
+ *- 6 => camera extrinsic data block (camera orientation and position) [R; c],
+ *       - rotation(angle axis), and camera center [rX,rY,rZ,cx,cy,cz].
  *- 3 => a 3D point data block.
  *
  */
@@ -41,7 +41,7 @@ class ReprojectionError {
   /**
    * @param[in] intrinsics: Camera intrinsics data block
    * @param[in] extrinsics: Camera pose data block
-   *   - 3 for rotation(angle axis), 3 for translation
+   *   - 3 for rotation(angle axis), 3 for center
    * @param[in] point: 3d point.
    * @param[out] residuals
    */
