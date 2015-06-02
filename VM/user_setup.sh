@@ -12,7 +12,7 @@ cp /usr/share/applications/paraview.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/meshlab.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/blender.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/gpicview.desktop /home/$VM_USER/Desktop/
-cp /usr/share/applications/gedit.desktop: /home/$VM_USER/Desktop/
+cp /usr/share/applications/gedit.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/kde4/kate.desktop /home/$VM_USER/Desktop/
 
 
