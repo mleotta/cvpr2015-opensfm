@@ -26,7 +26,7 @@ URL=/home/$VM_USER/SfM
 Type=Link
 DELIM
 
-# Set the config file to update the wallpaper
+# Set the config file to update the wallpaper and position the icons
 mkdir -p /home/$VM_USER/.config/pcmanfm/lubuntu/
 #cp /vagrant/VM/desktop-items-0.conf /home/$VM_USER/.config/pcmanfm/lubuntu/
 cat > /home/$VM_USER/.config/pcmanfm/lubuntu/desktop-items-0.conf << DELIM
@@ -44,6 +44,38 @@ sort=mtime;ascending;
 show_documents=0
 show_trash=0
 show_mounts=0
+
+[emacs24.desktop]
+x=200
+y=100
+
+[kate.desktop]
+x=0
+y=100
+
+[gpicview.desktop]
+x=0
+y=200
+
+[meshlab.desktop]
+x=100
+y=300
+
+[course-materials.desktop]
+x=0
+y=0
+
+[lxterminal.desktop]
+x=100
+y=0
+
+[blender.desktop]
+x=0
+y=300
+
+[gedit.desktop]
+x=100
+y=100
 DELIM
 
 # Copy data files into the VM
