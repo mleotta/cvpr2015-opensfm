@@ -25,8 +25,10 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //
 // Author: sameeragarwal@google.com (Sameer Agarwal)
-
-// Fitting a curve using Ceres Solver.
+//
+// ==================================
+// Fitting a curve using Ceres Solver
+// ==================================
 //
 // This example shows how to fit the curve
 //
@@ -40,15 +42,21 @@
 //
 //
 // Exercise 1
-//
+// ==========
 // Use automatic differentiation instead of numeric differentiation.
 // This will involve changing the implementation of
 // ExponentialResidual::operator() to use a template parameter T
 // instead of doubles.
 //
+// Use Data/curve_fitting/curve_fitting_data.txt as your test data for
+// this exercise.
+//
 // Reference: http://ceres-solver.org/nnls_tutorial.html#derivatives
 //
-// Exercise 2: Use a robust loss function.
+// Exercise 2
+// ==========
+//
+// Use a robust loss function.
 //
 // The data Data/curve_fitting/curve_fitting_data2.txt has outliers in
 // it, you can verify that by running the current program with this
