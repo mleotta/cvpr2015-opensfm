@@ -47,30 +47,6 @@ show_documents=0
 show_trash=0
 show_mounts=0
 
-[paraview.desktop]
-x=200
-y=300
-
-[CMake.desktop]
-x=200
-y=0
-
-[emacs24.desktop]
-x=200
-y=100
-
-[kate.desktop]
-x=0
-y=100
-
-[gpicview.desktop]
-x=0
-y=200
-
-[meshlab.desktop]
-x=100
-y=300
-
 [course-materials.desktop]
 x=0
 y=0
@@ -79,13 +55,37 @@ y=0
 x=100
 y=0
 
-[blender.desktop]
+[CMake.desktop]
+x=200
+y=0
+
+[kate.desktop]
 x=0
-y=300
+y=100
 
 [gedit.desktop]
 x=100
 y=100
+
+[emacs24.desktop]
+x=200
+y=100
+
+[meshlab.desktop]
+x=0
+y=200
+
+[blender.desktop]
+x=100
+y=200
+
+[paraview.desktop]
+x=200
+y=200
+
+[gpicview.desktop]
+x=0
+y=300
 DELIM
 
 # Copy data files into the VM
