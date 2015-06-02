@@ -14,6 +14,7 @@ cp /usr/share/applications/blender.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/gpicview.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/gedit.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/kde4/kate.desktop /home/$VM_USER/Desktop/
+cp /usr/share/applications/emacs24.desktop /home/$VM_USER/Desktop/
 
 
 # Create a shortcut to course materials
