@@ -7,8 +7,14 @@ mkdir -p /home/$VM_USER/SfM
 
 # Copy application shortcuts to the desktop
 cp /usr/share/applications/lxterminal.desktop /home/$VM_USER/Desktop/
+cp /usr/share/applications/CMake.desktop /home/$VM_USER/Desktop/
+cp /usr/share/applications/paraview.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/meshlab.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/blender.desktop /home/$VM_USER/Desktop/
+cp /usr/share/applications/gpicview.desktop /home/$VM_USER/Desktop/
+cp /usr/share/applications/gedit.desktop /home/$VM_USER/Desktop/
+cp /usr/share/applications/kde4/kate.desktop /home/$VM_USER/Desktop/
+
 
 # Create a shortcut to course materials
 cat > /home/$VM_USER/Desktop/course-materials.desktop << DELIM
@@ -22,7 +28,7 @@ URL=/home/$VM_USER/SfM
 Type=Link
 DELIM
 
-# Set the config file to update the wallpaper
+# Set the config file to update the wallpaper and position the icons
 mkdir -p /home/$VM_USER/.config/pcmanfm/lubuntu/
 #cp /vagrant/VM/desktop-items-0.conf /home/$VM_USER/.config/pcmanfm/lubuntu/
 cat > /home/$VM_USER/.config/pcmanfm/lubuntu/desktop-items-0.conf << DELIM
@@ -40,6 +46,46 @@ sort=mtime;ascending;
 show_documents=0
 show_trash=0
 show_mounts=0
+
+[course-materials.desktop]
+x=0
+y=0
+
+[lxterminal.desktop]
+x=100
+y=0
+
+[CMake.desktop]
+x=200
+y=0
+
+[kate.desktop]
+x=0
+y=100
+
+[gedit.desktop]
+x=100
+y=100
+
+[emacs24.desktop]
+x=200
+y=100
+
+[meshlab.desktop]
+x=0
+y=200
+
+[blender.desktop]
+x=100
+y=200
+
+[paraview.desktop]
+x=200
+y=200
+
+[gpicview.desktop]
+x=0
+y=300
 DELIM
 
 # Copy data files into the VM
