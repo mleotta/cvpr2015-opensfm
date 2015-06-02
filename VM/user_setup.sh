@@ -7,6 +7,7 @@ mkdir -p /home/$VM_USER/SfM
 
 # Copy application shortcuts to the desktop
 cp /usr/share/applications/lxterminal.desktop /home/$VM_USER/Desktop/
+cp /usr/share/applications/CMake.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/meshlab.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/blender.desktop /home/$VM_USER/Desktop/
 cp /usr/share/applications/gpicview.desktop /home/$VM_USER/Desktop/
@@ -44,6 +45,10 @@ sort=mtime;ascending;
 show_documents=0
 show_trash=0
 show_mounts=0
+
+[CMake.desktop]
+x=200
+y=0
 
 [emacs24.desktop]
 x=200
