@@ -26,7 +26,9 @@
 //
 // Author: sameeragarwal@google.com (Sameer Agarwal)
 //
+// ==============================================================
 // Bundle adjusting an openMVG reconstruction using Ceres Solver.
+// ==============================================================
 //
 // This example reads a BAF file produced by openMVG and minimizes the
 // sum squared reprojection error for the camera model defined by
@@ -34,8 +36,11 @@
 //
 // Usage:  bundle_adjuster --input <baf_file>
 //
-// Exercise 1
+// Use Data/MirebeauStHilaireStatue/sfm_data.baf as the data for this
+// exercise.
 //
+// Exercise 1
+// ==========
 // Partially remove gauge ambiguity by setting the extrinsics of the
 // first camera constant.
 //
@@ -45,8 +50,10 @@
 // eliminates six out the seven degrees of freedom of the
 // reconstruction.
 //
-// Exercise 2
+// http://ceres-solver.org/nnls_modeling.html#Problem::SetParameterBlockConstant__doubleP
 //
+// Exercise 2
+// ==========
 // Hold the principal point of each camera constant.
 //
 // As implemented, the set of intrinsics optimized by the bundle
@@ -54,14 +61,18 @@
 // distortion parameters. Use a SubsetParameterization to hold the
 // principal point for all the cameras constant.
 //
-// Exercise 3
+// http://ceres-solver.org/nnls_modeling.html#SubsetParameterization
 //
+// Exercise 3
+// ==========
 // Experiment with different linear solvers.
 //
 // Change the linear solver being used by the Levenberg-Marquardt
 // algorithm to SPARSE_NORMAL_CHOLESKY and observe the difference in
 // performance between a generic linear solver and one which exploits
 // the sparsity structure of the bundle adjustment problem.
+//
+// http://ceres-solver.org/nnls_solving.html#linearsolver
 
 #include <string>
 
@@ -79,9 +90,9 @@ DEFINE_double(position_sigma, 0.0, "Standard deviation of the camera "
 DEFINE_double(point_sigma, 0.0, "Standard deviation of the point "
               "perturbation.");
 DEFINE_string(initial_ply, "", "Export the BAF file data as a PLY file after "
-              "perturbation.");
+              "perturbation but before bundle adjustment.");
 DEFINE_string(final_ply, "", "Export the refined BAF file data as a PLY "
-              "file after optimization.");
+              "file after bundle adjustment.");
 DEFINE_int32(random_seed, 38401, "Random seed used to set the state "
              "of the pseudo random number generator used to generate "
              "the pertubations.");
